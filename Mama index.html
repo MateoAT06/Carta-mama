@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carta para Mamá</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe4e6, #ffd6ea);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      background-image: url('https://www.transparenttextures.com/patterns/flowers.png');
+    }
+    .sobre {
+      position: relative;
+      width: 320px;
+      height: 240px;
+      background-color: #ffc0cb;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.5s;
+    }
+    .sobre:hover {
+      transform: scale(1.05);
+    }
+    .texto-sobre-visible {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d6336c;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 8px 16px;
+      border-radius: 12px;
+    }
+    .texto-sobre {
+      display: none;
+    }
+    .carta {
+      display: none;
+      background-color: #fff0f5;
+      border-radius: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      padding: 40px;
+      max-width: 800px;
+      width: 100%;
+      border: 3px dashed #d6336c;
+      animation: doblar 1.2s ease forwards;
+      transform-origin: top center;
+      position: relative;
+    }
+    .carta h1 {
+      color: #c2185b;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #ffc1e3;
+    }
+    .carta p {
+      color: #4a0033;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+    .firma {
+      margin-top: 40px;
+      text-align: right;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .boton {
+      display: block;
+      margin: 40px auto 0;
+      background-color: #ff4081;
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 999px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease, transform 0.2s;
+    }
+    .boton:hover {
+      background-color: #e91e63;
+      transform: scale(1.05);
+    }
+    .mensaje-extra {
+      text-align: center;
+      color: #880e4f;
+      font-size: 1.3rem;
+      margin-top: 20px;
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+    .decoracion, .decoracion2 {
+      width: 80px;
+      position: absolute;
+    }
+    .decoracion {
+      top: -25px;
+      left: -25px;
+    }
+    .decoracion2 {
+      bottom: -25px;
+      right: -25px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes doblar {
+      0% {
+        transform: perspective(800px) rotateX(90deg);
+        opacity: 0;
+      }
+      100% {
+        transform: perspective(800px) rotateX(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <audio id="musica" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2023/03/28/audio_74dc6d07a2.mp3?filename=beautiful-piano-melody-144998.mp3" type="audio/mp3">
+  </audio>
+
+  <div class="sobre" onclick="abrirCarta()">
+    <div class="texto-sobre-visible">Para Mamá 💖</div>
+  </div>
+
+  <div class="carta" id="carta">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Flor" class="decoracion">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Flor" class="decoracion2">
+    <h1>🌷 Carta para mi mamá querida 🌷</h1>
+    <p>
+      Querida mamá,<br><br>
+      Hoy quiero tomar un momento para recordarte lo mucho que te amo y lo agradecida que estoy por tenerte en mi vida. Eres mi guía, mi fuerza, mi ejemplo y mi abrazo seguro cuando el mundo parece incierto.<br><br>
+      Gracias por cada sacrificio silencioso, por cada palabra de aliento, por cada sonrisa que me ha levantado el ánimo. Tu amor ha sido el faro que me ha guiado incluso en mis días más nublados.<br><br>
+      Tienes una manera única de hacer que todo se sienta posible, de convertir lo simple en mágico, y de llenar el hogar de calidez solo con tu presencia. 💖<br><br>
+      No hay suficientes palabras para decirte lo importante que eres para mí. Solo quiero que sepas que cada día me esfuerzo por ser alguien de quien te sientas orgullosa, porque tú has sido mi inspiración más grande.<br><br>
+      Te amo con todo mi corazón, hoy y siempre.
+    </p>
+    <p class="firma">Con todo mi amor,<br>Mateo 💌</p>
+    <button class="boton" onclick="mostrarMensaje()">❤️ Te amo, mamá</button>
+    <div id="mensajeExtra" class="mensaje-extra">
+      ¡Gracias por ser mi todo! 💕🌸
+    </div>
+  </div>
+
+  <script>
+    function abrirCarta() {
+      document.querySelector('.sobre').style.display = 'none';
+      const carta = document.getElementById('carta');
+      carta.style.display = 'block';
+      document.getElementById('musica').play();
+    }
+    function mostrarMensaje() {
+      const mensaje = document.getElementById('mensajeExtra');
+      mensaje.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
+
